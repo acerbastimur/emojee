@@ -1,0 +1,12 @@
+.grid {
+    width: 100%;
+    height: auto;
+}
+
+.grid__items-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-left: 4vw;
+    padding-right: 4vw;
+}

@@ -1,0 +1,33 @@
+.header {
+    background-color: rgba(247, 231, 157, 0.7);
+    height: 15vh;
+    width: 100vw;
+}
+
+.header__logo {
+    font-weight: bold;
+    font-size: 30px;
+    color: #707070;
+    display: block;
+    margin-top: calc((15vh/2 - 30px));
+    float: left;
+    padding-left: 4vw;
+
+}
+
+.header__text {
+    float: left;
+    margin-left: 30px;
+    color: #707070;
+    margin-top: 2px;
+}
+
+.header__text__brand-name {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.header__text__brand-slogan {
+    font-weight: normal;
+    margin-top: 10px;
+}

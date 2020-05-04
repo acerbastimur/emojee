@@ -63,6 +63,6 @@
     outline: none;
     background-color: #6E67C4;
     border-color: transparent;
-    cursor: not-allowed;
+    cursor: pointer;
     color: white;
 }

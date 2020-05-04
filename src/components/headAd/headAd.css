@@ -1,0 +1,14 @@
+.headAd__text {
+    font-size: 24px;
+    font-weight: normal;
+    color: #707070;
+    width: 50%;
+    text-align: center;
+    margin: auto;
+}
+
+.heAd__ad-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}

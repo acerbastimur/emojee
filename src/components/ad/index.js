@@ -1,2 +1,2 @@
-import Card from "./Card";
-export default Card;
+import Ad from "./Ad";
+export default Ad;

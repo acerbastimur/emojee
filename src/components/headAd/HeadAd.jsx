@@ -1,6 +1,6 @@
 import React from "react";
  import "./headAd.css";
-import Ad from "../ad/Ad";
+import Ad from "../ad";
 
 const HeadAd = () => {
   return (

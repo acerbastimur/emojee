@@ -1,11 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
 import "./cardGrid.css";
 import Card from "../card";
+import SortBox from "../sortBox";
 
 const CardGrid = () => {
   return (
     <div className="grid">
+      <div className="grid__search-container">
+        <span className="grid__search-container_text">Sort by</span>
+        <SortBox />
+      </div>
       <div className="grid__items-container">
         <Card
           content="༼ ºل͟º ༼ ºل͟º ༼ ºل͟º ༽ ºل͟º ༽ ºل͟º ༽"

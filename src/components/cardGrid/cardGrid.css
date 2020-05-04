@@ -10,3 +10,17 @@
     padding-left: 4vw;
     padding-right: 4vw;
 }
+
+.grid__search-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 4.2vw;
+}
+
+.grid__search-container_text {
+    font-size: 15px;
+    font-weight: normal;
+    color: #707070;
+    margin-right: 15px;
+}

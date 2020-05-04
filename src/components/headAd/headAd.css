@@ -1,3 +1,7 @@
+.headAd_container {
+    margin-top: 20px;
+}
+
 .headAd__text {
     font-size: 24px;
     font-weight: normal;
@@ -7,7 +11,7 @@
     margin: auto;
 }
 
-.heAd__ad-container {
+.headAd__ad-container {
     display: flex;
     justify-content: center;
     margin-top: 10px;

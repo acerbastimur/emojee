@@ -3,6 +3,7 @@ import "./cardGrid.css";
 import Card from "../card";
 import SortBox from "../sortBox";
 import { observer, inject } from "mobx-react";
+import Ad from "../ad/Ad";
 
 class CardGrid extends Component {
   async componentDidMount() {
@@ -23,17 +24,36 @@ class CardGrid extends Component {
           <SortBox />
         </div>
         <div className="grid__items-container">
-          {getProducts.map(({ face, date, id, price, size }) => (
-            <Card
-              key={id}
-              face={face}
-              size={size}
-              price={price}
-              date={date}
-            />
-          ))}
-          {/*           <Card content="ᕙ༼ຈل͜ຈ༽ᕗ" size={25} price={4} date="2 Days Ago" />
-           */}
+          {getProducts.length > 0 ? (
+            getProducts.map(({ face, date, id, price, size }, index) => {
+              if (index % 19 === 0 && index !== 0) {
+                // show an ad every 20 product
+                return [
+                  <Card
+                    key={id}
+                    face={face}
+                    size={size}
+                    price={price}
+                    date={date}
+                  />,
+                  <Ad key={"ad_" + id} />,
+                ];
+              }
+              return (
+                <Card
+                  key={id}
+                  face={face}
+                  size={size}
+                  price={price}
+                  date={date}
+                />
+              );
+            })
+          ) : (
+            <div className="grid__loading__text">
+              <p>Loading ¯ \ _ ( ツ ) _ / ¯ </p>
+            </div>
+          )}
         </div>
       </div>
     );

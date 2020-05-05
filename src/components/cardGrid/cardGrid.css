@@ -9,6 +9,7 @@
     justify-content: space-around;
     padding-left: 4vw;
     padding-right: 4vw;
+
 }
 
 .grid__search-container {
@@ -23,4 +24,23 @@
     font-weight: normal;
     color: #707070;
     margin-right: 15px;
+}
+
+
+.grid__loading__text {
+    width: 0px;
+    height: 40px;
+    overflow: hidden;
+    animation: animated-text 2s steps(30, end) 1s infinite both;
+    margin-top: 60px;
+    margin-left: 24px;
+}
+
+@keyframes animated-text {
+    from {
+        width: 0;
+    }
+    to {
+        width: 320px;
+    }
 }

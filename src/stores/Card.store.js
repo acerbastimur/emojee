@@ -3,7 +3,7 @@ import { fetchProducts } from "../services/GetProducts";
 
 class CardStore {
   productCursor = 0; //  pagination cursor
-  productLimitPerRequest = 19; // 19 because 20.th will be an ad
+  productLimitPerRequest = 20;
   products = []; // store all products paginated
   selectedProductSort = null;
 
@@ -12,7 +12,9 @@ class CardStore {
   };
 
   setProductSort = ({ sortType = null }) => {
+    this.cleanStore();
     this.selectedProductSort = sortType;
+    this.requestNewProducts();
   };
 
   requestNewProducts = async () => {
@@ -34,6 +36,12 @@ class CardStore {
   get getProducts() {
     return this.products;
   }
+
+  cleanStore() {
+    this.productCursor = 0;  
+    this.products = []; 
+    this.selectedProductSort = null;
+  }
 }
 
 decorate(CardStore, {
@@ -43,6 +51,7 @@ decorate(CardStore, {
   setProductSort: action,
   selectedProductSort: observable,
   getProducts: computed,
+  cleanStore: action,
 });
 
 export default new CardStore();

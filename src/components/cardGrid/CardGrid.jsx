@@ -26,7 +26,7 @@ class CardGrid extends Component {
           {getProducts.map(({ face, date, id, price, size }) => (
             <Card
               key={id}
-              content={face}
+              face={face}
               size={size}
               price={price}
               date={date}

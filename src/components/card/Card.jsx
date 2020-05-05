@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./card.css";
+import { returnFormattedTime, formatPrice } from "../../util";
 
-const Card = ({ content = "", size = 12, price = 0.0, date = "" }) => {
+const Card = ({ face = "", size = 12, price = 0.0, date = "" }) => {
   return (
     <div className="card">
       <div className="card__show-area">
-        <span className="card__show-area_content" style={{fontSize:size}}>{content}</span>
+        <span className="card__show-area_content" style={{ fontSize: size }}>
+          {face}
+        </span>
       </div>
       <div className="card__info">
         <div className="card__info_row">
@@ -16,12 +19,12 @@ const Card = ({ content = "", size = 12, price = 0.0, date = "" }) => {
           </div>
           <div>
             <span className="card__info_text">Price:</span>
-            <span className="card__info_value">{price}$</span>
+            <span className="card__info_value">${formatPrice({ price })}</span>
           </div>
         </div>
         <div className="card__info_row">
           <div>
-            <span className="card__info_text">{date}</span>
+            <span className="card__info_text">{returnFormattedTime(date)}</span>
           </div>
           <div>
             <button className="card__info_buy-button">

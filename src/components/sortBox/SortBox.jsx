@@ -8,8 +8,8 @@ class SortBox extends Component {
     const {
       CardStore: { setProductSort },
     } = this.props;
-
-    setProductSort({ sortType: PRODUCT_SORT_TYPES[value] });
+    
+    setProductSort({ sortType: PRODUCT_SORT_TYPES[value] }); // using Object Literal on value change
   };
 
   render() {

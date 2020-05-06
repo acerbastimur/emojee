@@ -30,5 +30,14 @@
 
 .card__img {
     border-radius: 6px;
-    width: 100%;
+    width: inherit;
+}
+
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 100%;
+    }
+    .card__img {
+        height: inherit;
+    }
 }

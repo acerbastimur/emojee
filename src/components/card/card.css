@@ -13,9 +13,9 @@
 
 .card:hover {
     transition: 0.4;
-    -webkit-box-shadow: 4px 6px 13px 0px rgb(165, 165, 165);
-    -moz-box-shadow: 4px 6px 13px 0px rgb(165, 165, 165);
-    box-shadow: 4px 6px 13px 0px rgb(165, 165, 165);
+    -webkit-box-shadow: 4px 15px 13px 0px rgb(165, 165, 165);
+    -moz-box-shadow: 4px 15px 13px 0px rgb(165, 165, 165);
+    box-shadow: 4px 6px 20px 0px rgb(165, 165, 165);
 }
 
 .card__show-area {
@@ -77,4 +77,10 @@
     border-color: transparent;
     cursor: pointer;
     color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 100%;
+    }
 }

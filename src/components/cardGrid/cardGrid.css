@@ -9,7 +9,6 @@
     justify-content: space-around;
     padding-left: 4vw;
     padding-right: 4vw;
-
 }
 
 .grid__search-container {
@@ -26,6 +25,10 @@
     margin-right: 15px;
 }
 
+.grid__loading__container {
+    width: 100%;
+    margin-bottom: 10vh;
+}
 
 .grid__loading__text {
     width: 0px;

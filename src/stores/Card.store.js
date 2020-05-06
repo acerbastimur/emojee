@@ -2,7 +2,7 @@ import { observable, decorate, action, computed } from "mobx";
 import { fetchProducts } from "../services/GetProducts";
 
 class CardStore {
-  productCursor = 0; //  pagination cursor
+  productCursor = 1; //  pagination cursor
   productLimitPerRequest = 20;
   products = []; // store all products paginated
   selectedProductSort = null;
@@ -18,6 +18,7 @@ class CardStore {
   };
 
   requestNewProducts = async () => {
+ 
     const fetchOptions = {
       // defining request options
       cursor: this.productCursor,
@@ -37,9 +38,14 @@ class CardStore {
     return this.products;
   }
 
+  get isFetchingProducts() {
+    const productCountNeed = this.productCursor * this.productLimitPerRequest;
+    const actualProductCount = this.products.length;
+    return productCountNeed !== actualProductCount;
+  }
   cleanStore() {
-    this.productCursor = 0;  
-    this.products = []; 
+    this.productCursor = 0;
+    this.products = [];
     this.selectedProductSort = null;
   }
 }
@@ -51,6 +57,7 @@ decorate(CardStore, {
   setProductSort: action,
   selectedProductSort: observable,
   getProducts: computed,
+  isFetchingProducts: computed,
   cleanStore: action,
 });
 

@@ -4,8 +4,9 @@ import { fetchProducts } from "../services/GetProducts";
 class CardStore {
   productCursor = 1; //  pagination cursor
   productLimitPerRequest = 20;
-  products = []; // store all products paginated
+  _products = []; // store all products paginated
   selectedProductSort = null;
+  endOfProducts = false;
 
   updateProductCursor = () => {
     this.productCursor += 1;
@@ -18,7 +19,9 @@ class CardStore {
   };
 
   requestNewProducts = async () => {
- 
+    console.log(this.endOfProducts);
+
+    if (this.endOfProducts) return;
     const fetchOptions = {
       // defining request options
       cursor: this.productCursor,
@@ -28,14 +31,21 @@ class CardStore {
 
     try {
       const newProducts = await fetchProducts(fetchOptions);
-      this.products = [...this.products, ...newProducts];
+      console.log(newProducts);
+
+      if (newProducts.length === 0) {
+        this.endOfProducts = true;
+
+        return;
+      }
+      this._products = [...this._products, ...newProducts];
     } catch (error) {
-      console.log("ERROR"); // TODO
+      console.error("ERROR WHILE FETCHING PRODUCTS"); 
     }
   };
 
-  get getProducts() {
-    return this.products;
+  get products() {
+    return this._products;
   }
 
   get isFetchingProducts() {
@@ -44,19 +54,20 @@ class CardStore {
     return productCountNeed !== actualProductCount;
   }
   cleanStore() {
-    this.productCursor = 0;
-    this.products = [];
+    this.productCursor = 1;
+    this._products = [];
     this.selectedProductSort = null;
   }
 }
 
 decorate(CardStore, {
-  products: observable,
+  _products: observable,
+  endOfProducts: observable,
   updateProductCursor: action,
   requestNewProducts: action,
   setProductSort: action,
   selectedProductSort: observable,
-  getProducts: computed,
+  products: computed,
   isFetchingProducts: computed,
   cleanStore: action,
 });

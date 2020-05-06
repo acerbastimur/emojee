@@ -10,7 +10,7 @@ const HeadAd = () => {
         word from our sponsors:
       </h2>
       <div className="headAd__ad-container">
-        <Ad />
+        <Ad adIndex={1} />
       </div>
     </div>
   );

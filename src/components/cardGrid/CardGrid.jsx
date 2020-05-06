@@ -42,16 +42,20 @@ class CardGrid extends Component {
       html.scrollHeight,
       html.offsetHeight
     );
+
     const windowBottom = windowHeight + window.pageYOffset;
-    if (windowBottom >= docHeight - 50 && !isFetchingProducts) {
+    const docTreshold = docHeight / 2;
+    if (windowBottom >= docHeight - docTreshold && !isFetchingProducts) {
+      console.log("fetching");
+
       updateProductCursor();
       requestNewProducts();
     }
-  }
+  };
 
   render() {
     const {
-      CardStore: { getProducts },
+      CardStore: { products, endOfProducts, productLimitPerRequest },
     } = this.props;
 
     return (
@@ -60,35 +64,28 @@ class CardGrid extends Component {
           <span className="grid__search-container_text">Sort by</span>
           <SortBox />
         </div>
-        <div className="grid__items-container" ref={this.paneDidMount}>
-          {getProducts.length > 0 &&
-            getProducts.map(({ face, date, id, price, size }, index) => {
-              if (index % 19 === 0 && index !== 0) {
-                // show an ad every 20 product
-                return [
-                  <Card
-                    key={"card_" + index}
-                    face={face}
-                    size={size}
-                    price={price}
-                    date={date}
-                  />,
-                  <Ad key={"ad_" + id} />,
-                ];
-              }
-              return (
-                <Card
-                  key={"card_" + index}
-                  face={face}
-                  size={size}
-                  price={price}
-                  date={date}
-                />
-              );
-            })}
+        <div className="grid__items-container">
+          {products.map(({ face, date, price, size }, index) => {
+            return [
+              <Card
+                key={"card_" + index}
+                face={face}
+                size={size}
+                price={price}
+                date={date}
+              />,
+              index % (productLimitPerRequest - 1) === 0 && index !== 0 && (
+                <Ad key={"ad_" + index} adIndex={index + 1} />
+              ),
+            ];
+          })}
           <div className="grid__loading__container">
             <div className="grid__loading__text">
-              <p>Loading ¯ \ _ ( ツ ) _ / ¯ </p>
+              <p>
+                {endOfProducts
+                  ? "~ end of the catalogue ~"
+                  : "Loading ¯  _ ( ツ ) _ / ¯"}
+              </p>
             </div>
           </div>
         </div>

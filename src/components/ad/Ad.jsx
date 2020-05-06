@@ -2,11 +2,20 @@ import React, { Component } from "react";
 import "./ad.css";
 import { API_BASE_URL } from "../../constants";
 
+import PropTypes from "prop-types";
+
 class Ad extends Component {
-  state = {
-    isLoading: true,
-    adImgUrl: null,
+  static propTypes = {
+    adIndex: PropTypes.number,
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: true,
+    };
+  }
 
   onAdLoaded = () => {
     this.setState({
@@ -14,15 +23,9 @@ class Ad extends Component {
     });
   };
 
-  componentDidMount() {
-    const uniqueAdId = new Date().valueOf(); // create a unique number based on time
-    let adUrl = API_BASE_URL + `ads/?r=${uniqueAdId}`;
-    this.setState({
-      adImgUrl: adUrl,
-    });
-  }
   render() {
-    const { isLoading, adImgUrl } = this.state;
+    const { isLoading } = this.state;
+    const { adIndex } = this.props;
 
     return (
       <div className="card">
@@ -32,7 +35,7 @@ class Ad extends Component {
           </div>
         ) : null}
         <img
-          src={adImgUrl}
+          src={API_BASE_URL + "ads/?r=" + adIndex}
           alt="Ad"
           className="card__img"
           onLoad={this.onAdLoaded}

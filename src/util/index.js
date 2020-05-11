@@ -16,22 +16,15 @@ export const returnFormattedTime = (productDate) => {
   const productDateInMs = new Date(productDate).getTime(); // convert productDate to Date object
   const nowInMs = Date.now();
 
-  const formatter = new Intl.RelativeTimeFormat("en", { auto: "numeric" }); // method to format dates
-  const isInPast = productDateInMs - nowInMs < 0;
   const timeInMs = Math.abs(nowInMs - productDateInMs); // time between now and productDate
 
   const relativeTimeWithLabel = returnRelativeTimeWithLabel(timeInMs); // get relative time with label
   const weeks = Number.parseInt(timeInMs / 6.048e8); // calculate weeks past due to deciding to show full date
 
-  const fullDate = new Intl.DateTimeFormat("en-US").format(
-    new Date(productDate)
-  );
+  const fullDate = new Date(productDate).toDateString(); //
 
   return weeks < 1 // if it's not older than 1 week, return a relative time
-    ? formatter.format(
-        isInPast ? -relativeTimeWithLabel.value : relativeTimeWithLabel.value,
-        relativeTimeWithLabel.label
-      )
+    ? `${relativeTimeWithLabel.value} ${relativeTimeWithLabel.label}`
     : fullDate;
 };
 

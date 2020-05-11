@@ -1,6 +1,8 @@
-# ascii faces ecommerce
+# emojee
 This is an ecommerce site, where you can buy all sorts of ascii faces like `(ノ・∀・)ノ` and `¯_(ツ)_/¯`, in a wide variety of font sizes.
 
+## demo
+<img width="1000" alt="emojee" src="https://user-images.githubusercontent.com/33218120/81264442-11de9180-904a-11ea-8916-859ef940e4be.png">
 ## Installing and Running the App
 
 - `git clone https://github.com/acerbastimur/emojee.git`
